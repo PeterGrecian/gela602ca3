@@ -33,8 +33,7 @@ python to invoke payload via lambda mechanism
 * iam.tf
 * role.tf   the policies attached to users A and B are attached to roles so they can
 be tested via sts assume-role
-* pil.zip   this should be maintained by terraform but I've run out of time, and could do
-with a good look at...
+* pil.zip   this should be maintained by terraform but I've run out of time, and requirements.tf_ is a stub
 * requirements.txt python requirements for pip
 
     
