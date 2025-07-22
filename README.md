@@ -38,8 +38,10 @@ be tested via sts assume-role
 
     
 ### Bugs
-The policy attachments are deleted on every other apply giving the
+With role.tf enabled the policy attachments are deleted on every other apply giving the
 error "When applying changes to aws_iam_policy_attachment.attach_bucket_b_policy". Root object was present, but now absent."
 
 This is probably a conflict between attaching a policy to a user and to a role.
+
+The workaround is to disable role.tf by moving it to role.tf_.  This disables the test.bash:test_account_permissions functionality.
  
