@@ -27,6 +27,6 @@ python to invoke payload via lambda mechanism
 * backend, provider, locals, gitinfo.bash
 * s3.tf
 * lambda.tf
-* ami.tf
+* iam.tf
 
     
