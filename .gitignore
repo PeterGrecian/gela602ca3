@@ -37,5 +37,4 @@ override.tf.json
 terraform.rc
 .terraform.lock.hcl
 lambda_function.zip
-pil.zip
 python_virtual_env
