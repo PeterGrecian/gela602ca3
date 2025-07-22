@@ -1,19 +1,19 @@
 
 # Create IAM User
 resource "aws_iam_user" "userA" {
-  name = "A" # Replace with the desired username
+  name = "A"
 }
 
 
 resource "aws_iam_policy" "bucket_a_policy" {
   name        = "BucketAReadWritePolicy"
   description = "Policy to allow read/write access to Bucket A"
-  policy      = jsonencode({
+  policy = jsonencode({
     Version = "2012-10-17"
     Statement = [
       {
-        Effect   = "Allow"
-        Action   = [
+        Effect = "Allow"
+        Action = [
           "s3:GetObject",
           "s3:PutObject",
           "s3:ListBucket"
@@ -39,19 +39,19 @@ resource "aws_iam_policy_attachment" "attach_bucket_a_policy" {
 
 
 resource "aws_iam_user" "userB" {
-  name = "B" # Replace with the desired username
+  name = "B"
 }
 
 
 resource "aws_iam_policy" "bucket_b_policy" {
   name        = "BucketBReadWritePolicy"
   description = "Policy to allow read access to Bucket B"
-  policy      = jsonencode({
+  policy = jsonencode({
     Version = "2012-10-17"
     Statement = [
       {
-        Effect   = "Allow"
-        Action   = [
+        Effect = "Allow"
+        Action = [
           "s3:GetObject",
           "s3:ListBucket"
         ]

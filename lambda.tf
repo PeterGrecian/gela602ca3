@@ -1,12 +1,12 @@
 
 resource "aws_lambda_function" "function" {
-  function_name = "gela602ca3"
-  handler       = "lambda.handler"
-  runtime       = "python3.12"
-  role          = aws_iam_role.lambda_exec.arn
-  filename      = "lambda_function.zip"
-  timeout       = 5 # seconds
-  memory_size   = 256 # MB
+  function_name    = "gela602ca3"
+  handler          = "lambda.handler"
+  runtime          = "python3.12"
+  role             = aws_iam_role.lambda_exec.arn
+  filename         = "lambda_function.zip"
+  timeout          = 15   # seconds
+  memory_size      = 1024 # MB
   source_code_hash = filebase64sha256("lambda_function.zip")
 
   environment {
@@ -47,8 +47,8 @@ resource "aws_iam_role_policy_attachment" "lambda_basic_execution" {
 }
 
 resource "aws_iam_role_policy" "lambda_exec_policy" {
-  name   = "lambda_exec_policy"
-  role   = aws_iam_role.lambda_exec.id
+  name = "lambda_exec_policy"
+  role = aws_iam_role.lambda_exec.id
   policy = jsonencode({
     Version = "2012-10-17"
     Statement = [
@@ -57,11 +57,11 @@ resource "aws_iam_role_policy" "lambda_exec_policy" {
         Effect   = "Allow"
         Resource = "${aws_s3_bucket.bucketA.arn}"
       },
-       {
+      {
         Action   = ["s3:GetObject"]
         Effect   = "Allow"
         Resource = "${aws_s3_bucket.bucketA.arn}/*"
-      },     {
+        }, {
         Action   = ["s3:PutObject"]
         Effect   = "Allow"
         Resource = "${aws_s3_bucket.bucketB.arn}/*"
@@ -81,13 +81,13 @@ resource "aws_lambda_permission" "allow_s3_trigger" {
 
 resource "aws_s3_bucket_notification" "bucket_notification" {
   bucket = aws_s3_bucket.bucketA.id
-  
+
   lambda_function {
-    events = ["s3:ObjectCreated:Put"]  # "*" will trigger it twice
+    events        = ["s3:ObjectCreated:Put"] # "*" will trigger it twice
     filter_suffix = ".jpg"
 
     lambda_function_arn = aws_lambda_function.function.arn
   }
-  
+
   depends_on = [aws_lambda_permission.allow_s3_trigger]
 }
