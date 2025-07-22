@@ -1,0 +1,25 @@
+#!/bin/bash -ex
+# shortcut to update the lambda function
+
+if ! python -m py_compile *.py; then
+  echo "not updating"    
+  exit
+else
+  rm -rf __pycache__
+fi
+
+cp pil.zip lambda_function.zip
+zip lambda_function.zip *.py 
+# update lambda function
+fn="gela602ca3"
+aws lambda update-function-code --zip-file fileb://$PWD/lambda_function.zip \
+  --function-name $fn | grep CodeSize
+
+echo aws lambda invoke --function-name $fn /dev/stdout  
+echo aws logs tail /aws/lambda/$fn --follow
+
+
+#https://docs.aws.amazon.com/lambda/latest/dg/python-package.html#python-package-create-dependencies
+#cd python_virtual_env/lib/python3.13/site-packages
+#zip -r ../../../../pil.zip .
+# cd 
