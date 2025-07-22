@@ -1,7 +1,7 @@
 resource "aws_s3_bucket" "bucketA" {
-  bucket = "A"
+  bucket = "gela602ca3-bucket-a"
 }
 
 resource "aws_s3_bucket" "bucketB" {
-  bucket = "B"
+  bucket = "gela602ca3-bucket-b"
 }
