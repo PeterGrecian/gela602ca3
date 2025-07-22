@@ -17,8 +17,11 @@ test script to write .jpg to bucket A.  Uses aws cli/bash.
 * assert non existance of EXIF data in file.<br>
 * as user B fail to write to buckets A and B 
 
-### delexim.py <file>
+### deexim.py <file>
 python to read file, discard EXIF data, write to path set by environment variable B_BUCKET
+
+### lambda.py
+python to invoke payload via lambda mechanism
 
 ### terraform/
 * backend, provider, locals, gitinfo.bash
