@@ -1,31 +1,45 @@
-from pprint import pformat
+from pprint import pprint
 import os
+import deexim
+# for debugging
 
-def lambda_handler(event, context):
-    html = ""
-    favicon=open("favicon.png64", "r").read()
-    fav = f'<link rel="icon" type="image/png" href="data:image/png;base64,{favicon}">'
-    #fav += '\n<head><link rel="stylesheet" href="styles.css"></head>'
-    path = event['path']
-    stage = event['requestContext']['stage']
-    host = event['headers']['Host']
-    root=f'https://{host}/{stage}'
-    print(f'path = {path}, stage = {stage}, root = {root}')
+# aws lambda invoke --function-name gela602ca3
 
-    content = f'<html><head>{fav}{html}</body></html>'
+
+
+def handler(event, context):
+    try:
+        ss = event['Records'][0]['s3']
+        bucket = ss['bucket']['name']
+        file = ss['object']['key']
+        print(f"Bucket: {bucket}, File: {file}")
+    except KeyError as e:
+        print(f"KeyError: {e}")
+        return {
+            'statusCode': 500,
+            'body': "Internal Server Error",
+            'headers': {
+                'Content-Type': 'text/html',
+            }
+        }
+    deexim.strip(bucket, file)  # read the file, strip EXIM data, write to bucket set by environment variable
 
     return {
         'statusCode': 200,
-        'body': content,
+        'body': "",
         'headers': {
             'Content-Type': 'text/html',
         }
     }
 
+
+
+
+
 if __name__ == "__main__":
     # mock data
     event = {
-        'requestContext': {'stage':'-stage-'},
+        '': {'stage':'-stage-'},
         'headers': {
             'Host':'-host-',
             'X-Forwarded-For':'-ip-',
@@ -38,8 +52,5 @@ if __name__ == "__main__":
     context.log_group_name = '-log_group_name-'
     context.log_stream_name = '-log-stream-name-'
 
-    # test all the code
-    for p in 'event contents anything-else'.split():
-        event['path'] = f'/-stage-/{p}'
-        print(f'{p:<20}', len(pformat(lambda_handler(event, context))))
+    handler(event, context)
 
