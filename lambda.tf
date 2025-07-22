@@ -2,7 +2,7 @@
 
 
 resource "aws_lambda_function" "function" {
-  function_name = "cvterraform"
+  function_name = "gela602ca3"
   handler       = "lambda.handler"
   runtime       = "python3.11"
   role          = aws_iam_role.lambda_exec.arn
