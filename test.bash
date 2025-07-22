@@ -112,18 +112,6 @@ function test_lambda () {
     echo "OK: No EXIF data found in test.jpg"
   fi
 
-  cleanup >& /dev/null() {
-  cleanup >& /dev/null
-
-  aws s3 cp $tdir/test.jpg s3://$bucketA/test.jpg
-  sleep 10
-  aws s3 cp s3://$bucketB/test.jpg .
-  if has_exif "test.jpg"; then
-    echo "ERROR: EXIF data found in test.jpg"
-  else
-    echo "OK: No EXIF data found in test.jpg"
-  fi
-
   cleanup >& /dev/null
 
 }

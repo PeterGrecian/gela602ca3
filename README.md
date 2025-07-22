@@ -37,3 +37,9 @@ be tested via sts assume-role
 * requirements.txt python requirements for pip
 
     
+### Bugs
+The policy attachments are deleted on every other apply giving the
+error "When applying changes to aws_iam_policy_attachment.attach_bucket_b_policy". Root object was present, but now absent."
+
+This is probably a conflict between attaching a policy to a user and to a role.
+ 
