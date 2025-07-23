@@ -6,7 +6,7 @@ resource "aws_lambda_function" "function" {
   role             = aws_iam_role.lambda_exec.arn
   filename         = "lambda_function.zip"
   timeout          = 15   # seconds
-  memory_size      = 1024 # MB
+  memory_size      = 256 # MB
   source_code_hash = filebase64sha256("lambda_function.zip")
 
   environment {
