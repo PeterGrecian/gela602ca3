@@ -1,6 +1,8 @@
-import os
+import os, sys
 import time
-from s3commands import *
+
+sys.path.append('../general-awspy')
+from s3_commands import *
 
 def is_image(file):
     """
