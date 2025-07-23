@@ -1,0 +1,3 @@
+[submodule "general-awspy"]
+	path = general-awspy
+	url = git@github.com:PeterGrecian/general-awspy.git
