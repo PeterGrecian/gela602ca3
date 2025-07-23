@@ -9,7 +9,7 @@ else
 fi
 
 cp pil.zip lambda_function.zip
-zip lambda_function.zip *.py 
+zip lambda_function.zip lambda.py deexim.py 
 # update lambda function
 fn="gela602ca3"
 aws lambda update-function-code --zip-file fileb://$PWD/lambda_function.zip \
