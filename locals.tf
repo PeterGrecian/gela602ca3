@@ -1,5 +1,5 @@
 data "external" "git_info" {
-  program = ["bash", "./gitinfo.bash"]
+  program = ["bash", ".utils-terraform/gitinfo.bash"]
 }
 
 locals {
