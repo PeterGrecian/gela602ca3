@@ -1,3 +1,6 @@
 [submodule "general-awspy"]
 	path = general-awspy
 	url = git@github.com:PeterGrecian/general-awspy.git
+[submodule "utils-terraform"]
+	path = utils-terraform
+	url = git@github.com:PeterGrecian/utils-terraform.git
