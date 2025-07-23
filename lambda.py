@@ -6,11 +6,11 @@ import deexim
 # aws lambda invoke --function-name gela602ca3
 
 def handler(event, context):
+
     try:
         ss = event['Records'][0]['s3']
         bucket = ss['bucket']['name']
         file = ss['object']['key']
-        print(event['Records'][0]['eventName'])
         print(f"Bucket: {bucket}, File: {file}")
     except KeyError as e:
         print(f"KeyError: {e}")
@@ -30,7 +30,6 @@ def handler(event, context):
             'Content-Type': 'text/html',
         }
     }
-
 
 
 if __name__ == "__main__":
