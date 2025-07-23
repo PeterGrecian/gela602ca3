@@ -38,3 +38,4 @@ terraform.rc
 .terraform.lock.hcl
 lambda_function.zip
 python_virtual_env
+*pycache__
